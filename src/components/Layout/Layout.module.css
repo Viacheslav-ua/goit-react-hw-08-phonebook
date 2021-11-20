@@ -1,0 +1,13 @@
+.link {
+    margin-left: 30px;
+}
+
+.activeLink {
+    color: blue;
+    cursor: default;
+}
+ 
+.active {
+    color: blue;
+    cursor: default;
+}

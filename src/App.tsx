@@ -1,18 +1,27 @@
 import React from "react";
-import ContactForm from "./components/ContactForm";
-import ContactList from "./components/ContactList";
-import Filter from "./components/Filter";
-import S from "./App.module.css";
+import { Routes, Route } from 'react-router-dom';
 
-const App: React.FC = () => {
+import S from "./App.module.css";
+import Layout from './components/Layout';
+
+import HomePage from './view/HomePage'
+import LoginPage from './view/LoginPage';
+import RegisterPage from './view/RegisterPage';
+import ContactsPage from './view/ContactsPage';
+
+const App: React.FC = (): JSX.Element => {
   return (
-    <div className={S.container}>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2 className={S.title}>Contacts</h2>
-      <Filter />
-      <ContactList />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={< HomePage />} />
+          <Route path="register" element={< RegisterPage />} />
+          <Route path="login" element={< LoginPage />} />
+          <Route path="contacts" element={< ContactsPage />} />
+          {/* <Route path="*" element={< NotFoundView/>} /> */}
+        </Route>
+      </Routes>
+    </>
   );
 };
 
