@@ -1,22 +1,32 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import s from './RegisterPage.module.css'
+import { useDispatch } from "react-redux";
+import authOperations from "../../redux/auth/auth-operations";
 
 const RegisterPage: React.FC = () => {
+  const dispatch = useDispatch();
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const handleAddInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.currentTarget.name === "name") setName(e.currentTarget.value);
-    if (e.currentTarget.name === "email") setEmail(e.currentTarget.value);
-    if (e.currentTarget.name === "password") setPassword(e.currentTarget.value);
-      
-    };
+  const handelSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(authOperations.register({name, email, password}));
+    setName('');
+    setEmail('');
+    setPassword('');
+  }
+
+  const handelChang = ({target: {name, value }}: React.ChangeEvent<HTMLInputElement>) => {
+    if (name === "name") setName(value);
+    if (name === "email") setEmail(value);
+    if (name === "password") setPassword(value);
+  }
 
   return (
-    <form className={s.formRegister}>
+    <form onSubmit={handelSubmit} className={s.formRegister}>
       <h2>Register Page</h2>
       <TextField
         label="User name"
@@ -26,7 +36,7 @@ const RegisterPage: React.FC = () => {
         name="name"
         className={s.input}
         value={name}
-       onChange={handleAddInput}
+       onChange={handelChang}
       />
 
       <TextField
@@ -37,7 +47,7 @@ const RegisterPage: React.FC = () => {
         name="email"
         className={s.input}
         value={email}
-       onChange={handleAddInput}
+       onChange={handelChang}
       />
 
       <TextField
@@ -48,7 +58,7 @@ const RegisterPage: React.FC = () => {
         name="password"
         className={s.input}
         value={password}
-       onChange={handleAddInput}
+       onChange={handelChang}
       />
 
       <Button type="submit" className={s.btn} variant="contained">
