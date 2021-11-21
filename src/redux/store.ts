@@ -13,7 +13,7 @@ import logger from "redux-logger";
 const store = configureStore({
   reducer: {
     // contacts: persistReducer(contactsPersistConfig, contactsReducer),
-    // auth: authReduser,
+   //auth: authReduser,
     contacts: contactsReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(), //.concat(logger),
