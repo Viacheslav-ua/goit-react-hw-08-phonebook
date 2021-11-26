@@ -11,7 +11,10 @@ const UserMenu: React.FC = (): JSX.Element => {
   return (
     <>
       <span className={S.spn}>Hi, {email}</span>
-      <Button className={S.btn} onClick={() => dispatch(authOperations.logOut)}>
+      <Button
+        className={S.btn}
+        onClick={() => dispatch(authOperations.logOut())}
+      >
         log out
       </Button>
     </>

@@ -6,7 +6,8 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+import contactsOperations from "../../redux/contacts/contacts-operations";
 import * as actions from "../../redux/contacts/contacts-actions";
 
 interface PropsType {
@@ -20,7 +21,9 @@ type contactsType = {
   number: string;
 };
 
-const ContactForm: React.FC<PropsType> = ({ contacts, onFormSubmit }) => {
+// const ContactForm: React.FC<PropsType> = ({ contacts, onFormSubmit }) => {
+const ContactForm: React.FC = () => {
+  const dispatch = useDispatch();
   const [name, setName] = useState<string>("");
   const [number, setNumber] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -36,15 +39,16 @@ const ContactForm: React.FC<PropsType> = ({ contacts, onFormSubmit }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const isName = contacts.items.find((item: contactsType) =>
-      item.name.toLowerCase().includes(name.toLowerCase())
-    );
+    // const isName = contacts.items.find((item: contactsType) =>
+    //   item.name.toLowerCase().includes(name.toLowerCase())
+    // );
 
-    if (isName) {
-      toggleModal();
-      return;
-    }
-    onFormSubmit({ id: uuidv4(), name: name, number: number });
+    // if (isName) {
+    //   toggleModal();
+    //   return;
+    // }
+    // onFormSubmit({ id: uuidv4(), name: name, number: number });
+    dispatch(contactsOperations.addContact({ name, number }));
     reset();
   };
 
@@ -104,10 +108,11 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    onFormSubmit: (data: contactsType) => dispatch(actions.addContact(data)),
-  };
-};
+// const mapDispatchToProps = (dispatch: any) => {
+//   return {
+//     onFormSubmit: (data: contactsType) => dispatch(actions.addContact(data)),
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
+// export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
+export default ContactForm;

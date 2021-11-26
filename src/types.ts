@@ -1,4 +1,3 @@
-
 export interface UserTypes {
   name: string | null;
   email: string | null;
@@ -17,8 +16,8 @@ export interface ItemTypes {
 }
 
 export interface ContactsTypes {
-  item: ItemTypes;
-  filter?: string;
+  items: ItemTypes[];
+  filter: string;
 }
 
 export interface StateTypes {
