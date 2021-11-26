@@ -9,7 +9,7 @@ const ContactsPage = () => {
       <h1>Phonebook</h1>
       <ContactForm />
       <h2 className={S.title}>Contacts</h2>
-      <Filter />
+      {/* <Filter /> */}
       <ContactList />
     </div>
     )

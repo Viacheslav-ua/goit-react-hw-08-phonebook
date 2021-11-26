@@ -1,32 +1,22 @@
 import React, { useState } from "react";
 import Modal from "../Modal";
-import { v4 as uuidv4 } from "uuid";
 import S from "./ContactForm.module.css";
 import Button from "@mui/material/Button";
+import Box from '@mui/material/Box';
 import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import contactsOperations from "../../redux/contacts/contacts-operations";
-import * as actions from "../../redux/contacts/contacts-actions";
+import contactsSelectors from "../../redux/contacts/contacts-selector";
+import { ItemTypes } from "../../types"
 
-interface PropsType {
-  onFormSubmit: any;
-  contacts: any;
-}
-
-type contactsType = {
-  id: string;
-  name: string;
-  number: string;
-};
-
-// const ContactForm: React.FC<PropsType> = ({ contacts, onFormSubmit }) => {
 const ContactForm: React.FC = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState<string>("");
   const [number, setNumber] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
+  const items = useSelector(contactsSelectors.getItems)
 
   const handleAddInput =
     (i: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,15 +29,14 @@ const ContactForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // const isName = contacts.items.find((item: contactsType) =>
-    //   item.name.toLowerCase().includes(name.toLowerCase())
-    // );
+    const isName = items.find((item: ItemTypes) =>
+      item.name.toLowerCase().includes(name.toLowerCase())
+    );
 
-    // if (isName) {
-    //   toggleModal();
-    //   return;
-    // }
-    // onFormSubmit({ id: uuidv4(), name: name, number: number });
+    if (isName) {
+      toggleModal();
+      return;
+    }
     dispatch(contactsOperations.addContact({ name, number }));
     reset();
   };
@@ -71,6 +60,7 @@ const ContactForm: React.FC = () => {
           </Alert>
         </Modal>
       )}
+      <Box component="span" sx={{ p: 2, border: '1px dashed grey' }}>
       <form className={S.contactsForm} onSubmit={handleSubmit}>
         <TextField
           label="Name"
@@ -98,6 +88,7 @@ const ContactForm: React.FC = () => {
           Add contact
         </Button>
       </form>
+      </Box>
     </>
   );
 };
@@ -108,11 +99,4 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-// const mapDispatchToProps = (dispatch: any) => {
-//   return {
-//     onFormSubmit: (data: contactsType) => dispatch(actions.addContact(data)),
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
 export default ContactForm;

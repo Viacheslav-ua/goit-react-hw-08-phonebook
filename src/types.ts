@@ -7,6 +7,7 @@ export interface AuthTypes {
   user: UserTypes;
   token: string | null;
   isLoggedIn: boolean;
+  isFetchingUser: boolean;
 }
 
 export interface ItemTypes {
