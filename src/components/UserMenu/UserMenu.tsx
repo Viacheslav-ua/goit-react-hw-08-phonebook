@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "@mui/material/Button";
 import S from "./UserMenu.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import authSelectors from "../../redux/auth/auth-selectors";
@@ -15,8 +14,7 @@ const UserMenu: React.FC = (): JSX.Element => {
     <>
       <span className={S.spn}>Hi, {email}</span>
       
-      <Fab className={S.fab} size="small" variant="extended">
-        {/* <NavigationIcon sx={{ mr: 1 }} /> */}
+      <Fab className={S.fab} size="small" variant="extended" onClick={() => dispatch(authOperations.logOut())}>
         log out
       </Fab>
     </>

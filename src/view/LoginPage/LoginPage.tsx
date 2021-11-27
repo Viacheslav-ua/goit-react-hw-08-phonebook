@@ -25,6 +25,7 @@ const LoginPage = () => {
   };
 
   return (
+    // <Box component="span" sx={{ p: 2, border: '1px dashed grey' }}>
     <form onSubmit={handelSubmit} className={s.formLogin}>
       <h2>Login</h2>
       <TextField
@@ -41,8 +42,9 @@ const LoginPage = () => {
       <TextField
         label="Password"
         variant="standard"
-        id="component-simple"
-        type="text"
+        // id="component-simple"
+        id="filled-password-input"
+        type="password"
         name="password"
         className={s.input}
         value={password}
@@ -53,6 +55,7 @@ const LoginPage = () => {
         login
       </Button>
     </form>
+    // </Box>
   );
 };
 

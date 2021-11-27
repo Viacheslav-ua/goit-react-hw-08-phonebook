@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import authSelectors from "../../redux/auth/auth-selectors";
 import contactsOperations from "../../redux/contacts/contacts-operations";
 import contactsSelectors from "../../redux/contacts/contacts-selector";
@@ -33,8 +33,8 @@ const ContactList: React.FC = () => {
   };
 
   return (
-    <>
-    
+    <div className={S.container}>
+      <h2 className={S.title}>Contacts</h2>
       <Filter filterValue={filter} onChangeFilter={changeFilter} />
       <ul className={S.list}>
         {contacts.items.map(
@@ -42,13 +42,13 @@ const ContactList: React.FC = () => {
             name.toLowerCase().includes(filter.toLowerCase()) && (
 
               <li key={id} className={S.row}>
-                <p className={S.text}>
+                <span className={S.text}>
                   {name}: {number}
-                </p>
+                </span>
                 {/* <button className={S.btn} onClick={() => handleDeleteContact(id)}>
                   Удалить
                 </button> */}
-                <Fab  size="small" color="secondary" aria-label="delete" onClick={() => handleDeleteContact(id)}>
+                <Fab className={S.fab} size="small" color="secondary" aria-label="delete" onClick={() => handleDeleteContact(id)}>
                   <AddIcon sx={{ fontSize: 18}}/>
                 </Fab>
               </li>
@@ -58,7 +58,7 @@ const ContactList: React.FC = () => {
       </ul>
     
     
-    </>
+    </div>
   );
 };
 export default ContactList;

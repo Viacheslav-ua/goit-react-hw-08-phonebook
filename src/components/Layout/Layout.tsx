@@ -15,8 +15,9 @@ const Layout = () => {
       <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
       <Toolbar>
-      <header className={s.header}>
+      
         {isLoggedIn ? (
+          <header className={s.header}>
           <>
           <div className={s.navMenu}>
             <NavLink to="/" className={s.link}>
@@ -30,6 +31,7 @@ const Layout = () => {
             <UserMenu />
             </div>
           </>
+          </header>
         ) : (
           <>
             <NavLink to="/register" className={s.link}>
@@ -40,11 +42,11 @@ const Layout = () => {
             </NavLink>
           </>
         )}
-      </header>
+      
       </Toolbar>
       </AppBar>
       </Box>
-      <main className="container">
+      <main className={s.container}>
         <Outlet />
       </main>
       

@@ -6,7 +6,7 @@ const initialState: AuthTypes = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
-  isFetchingUser: true,
+  isFetchingUser: false,
 };
 
 const authSlice = createSlice({

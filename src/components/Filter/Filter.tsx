@@ -1,9 +1,6 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
-import contactsSelectors from "../../redux/contacts/contacts-selector";
 import S from "./Filter.module.css";
-import { connect, useSelector } from "react-redux";
-// import { setFilter } from "../../redux/contacts/contacts-actions";
 
 interface PropsType {
   filterValue: string;
@@ -28,18 +25,4 @@ const Filter: React.FC<PropsType> = ({ filterValue, onChangeFilter }) => {
   );
 };
 
-// const mapStateToProps = (state: any) => {
-//   return {
-//     filterValue: contactsSelectors.getFilter(state),
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch: any) => {
-//   return {
-//     onChangeFilter: (e: React.ChangeEvent<HTMLInputElement>) =>
-//       dispatch(setFilter(e.currentTarget.value)),
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Filter);
 export default Filter;

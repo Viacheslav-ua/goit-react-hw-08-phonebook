@@ -27,7 +27,7 @@ const RegisterPage: React.FC = () => {
 
   return (
     <form onSubmit={handelSubmit} className={s.formRegister}>
-      <h2>Register Page</h2>
+      <h2>Register</h2>
       <TextField
         label="User name"
         variant="standard"

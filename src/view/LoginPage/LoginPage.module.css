@@ -1,6 +1,13 @@
 .formLogin {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 400px;
+    height: 300px;
+    background-color: antiquewhite;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+    padding-bottom: 10px;
 }
 
 .btn {
@@ -8,5 +15,5 @@
 }
 
 .input {
-    margin-bottom: 20px;
+    width: 300px;
 }

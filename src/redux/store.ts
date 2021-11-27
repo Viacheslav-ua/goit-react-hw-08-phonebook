@@ -11,7 +11,6 @@ import {
   // REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import logger from "redux-logger";
 import authReducer from "./auth/auth-slice";
 import { AuthTypes } from "../types";
 
@@ -23,7 +22,6 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    // auth: authReducer,
     auth: persistReducer<AuthTypes>(authPersistConfig, authReducer),
     contacts: contactsReducer,
   },

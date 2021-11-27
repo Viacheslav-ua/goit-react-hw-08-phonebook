@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import authOperations from "./redux/auth/auth-operations";
-import S from "./App.module.css";
 import Layout from "./components/Layout";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
@@ -12,6 +11,7 @@ import HomePage from "./view/HomePage";
 import LoginPage from "./view/LoginPage";
 import RegisterPage from "./view/RegisterPage";
 import ContactsPage from "./view/ContactsPage";
+import NotFoundPage from "./view/NotFoundPage";
 
 
 
@@ -53,7 +53,7 @@ const App: React.FC = (): JSX.Element => {
               }
             />
   
-            {/* <Route path="*" element={< NotFoundView/>} /> */}
+            <Route path="*" element={< NotFoundPage/>} />
           </Route>
         </Routes>
       </>

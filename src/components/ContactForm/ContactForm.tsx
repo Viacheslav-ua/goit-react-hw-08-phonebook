@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Modal from "../Modal";
 import S from "./ContactForm.module.css";
 import Button from "@mui/material/Button";
-import Box from '@mui/material/Box';
 import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
@@ -60,8 +59,9 @@ const ContactForm: React.FC = () => {
           </Alert>
         </Modal>
       )}
-      <Box component="span" sx={{ p: 2, border: '1px dashed grey' }}>
+      
       <form className={S.contactsForm} onSubmit={handleSubmit}>
+        <h2 className={S.title}>Add contact</h2>
         <TextField
           label="Name"
           variant="standard"
@@ -88,15 +88,8 @@ const ContactForm: React.FC = () => {
           Add contact
         </Button>
       </form>
-      </Box>
     </>
   );
-};
-
-const mapStateToProps = (state: any) => {
-  return {
-    contacts: state.contacts,
-  };
 };
 
 export default ContactForm;
